@@ -15,7 +15,7 @@ const get_guid = function () {
 
 const Translate = function (subscriptionKey, content) {
     // Translate to German and Italian.
-    let params = `&from=en&to=fr&to=de`;
+    let params = `&from=en&to=fr&to=de&textType=html`;
     let request_params = {
         method: 'POST',
         hostname: host,
