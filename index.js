@@ -31,25 +31,15 @@ function generateZosTranslationFileContent(translations) {
 }
 
 function writeZosLocalizationFile(lang, fileContent, directory) {
+  const fse = require('fs-extra');
   const path = `${directory}/${lang}.lua`;
-  return fse.emptyDir(destinationDirectory)
-    .then(() => fse.pathExists(path))
-    .then(exists => {
-      if (exists) {
-        console.debug(`Deleting ${path}`);
-        return fse.remove(path);
-      }
-    })
-    .then(() => fse.writeFile(path, fileContent[lang]))
+  return fse.ensureFile(path)
+    .then(() => fse.writeFile(path, fileContent));
 }
 
 // Translates from English to French and German.
 function translateEnglishStrings(accessKey, en, fr, de, destinationDirectory) {
-  const fse = require('fs-extra');
-  const promises = Object.keys(en).map(key => translateEnglishString(accessKey, key, en[key], fr, de));
-
-  return fse.emptyDir(destinationDirectory)
-    .then(() => Promise.all(promises))
+  return Promise.all(Object.keys(en).map(key => translateEnglishString(accessKey, key, en[key], fr, de)))
     .then(generateZosTranslationFileContent)
     .then(fileContent => Object.keys(fileContent).map(lang => writeZosLocalizationFile(lang, fileContent[lang], destinationDirectory)))
     .then(promises => Promise.all(promises));

@@ -1,21 +1,11 @@
 const rimraf = require("rimraf");
 const esoTranslate = require('./index');
 
-function translate() {
-	const key = process.env['AzureTranslatorKey'];
-	if (!key) {
-		throw "Must set `AzureTranslatorKey` environment variable to use translation service";
-	}
-
-	const tran = require('./index');
-	return esoTranslate.esoAzureTranslate(key, require('./strings/en.json'), require('./strings/fr.json'), require('./strings/de.json'), './strings/translated');
-}
-
 function cleanTranslatedStrings() {
 	return new Promise(resolve => rimraf('./strings/translated', resolve));
 }
 
-beforeEach(cleanTranslatedStrings);
+// beforeEach(cleanTranslatedStrings);
 
 // afterAll(cleanTranslatedStrings);
 
@@ -24,7 +14,7 @@ test('Strings are translated from English', () => {
 		"STRING1": "Some text"
 	};
 
-	return esoTranslate.translateEnglishString(process.env['AzureTranslatorKey'], "STRING1", en, {}, {}, './strings/translated')
+	return esoTranslate.translateEnglishString(process.env['AzureTranslatorKey'], "key1", "value 1", {}, {},)
 		.then(console.log);
 });
 
