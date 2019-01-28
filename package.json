@@ -1,0 +1,18 @@
+{
+  "name": "eso-azure-translate",
+  "version": "1.0.0",
+  "description": "Translates and generates Elder Scrolls Online localization files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelwestbrook/eso-azure-translate"
+  },
+  "author": "Mike Westbrook",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^7.0.1"
+  }
+}
