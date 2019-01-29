@@ -1,30 +1,34 @@
 const translate = require('./translate');
 
 function translateEnglishString(accessKey, key, value, frenchOverrides, germanOverrides) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     // Translate to French and German
     return translate(accessKey, value)
       .then(response => {
         const json = JSON.parse(response);
+        if (json && json["error"]) {
+          reject(respose.error);
+        }
         // Collate results
         const translations = {
-          fr: frenchOverrides.hasOwnProperty(key) ? { text: frenchOverrides[key] } : json[0].translations.find(element => element.to == "fr"),
-          de: germanOverrides.hasOwnProperty(key) ? { text: germanOverrides[key] } : json[0].translations.find(element => element.to == "de"),
-          en: { text: value, to: 'en' }
+          fr: frenchOverrides.hasOwnProperty(key) ? frenchOverrides[key] : json[0].translations.find(element => element.to == "fr").text,
+          de: germanOverrides.hasOwnProperty(key) ? germanOverrides[key] : json[0].translations.find(element => element.to == "de").text,
+          en: value
         };
-        resolve({ key: key, translations: translations });
-      });
+        const translation = new Object();
+        translation[key] = translations;
+        resolve(translation);
+      })
+      .catch(reject);
   })
 }
 
 function generateZosTranslationFileContent(translations) {
-  const fileContent = {}
-  for (var translation in translations) {
-    const key = translations[translation].key;
-    Object.keys(translations[translation].translations).forEach(lang => {
-      fileContent[lang] = fileContent[lang] == null ? "" : fileContent[lang];
-      fileContent[lang] += `ZO_CreateStringId("${key}", "${translations[translation].translations[lang].text}")\n`
-    });
+  const fileContent = { en: {}, fr: {}, de: {} };
+  for (let key in translations) {
+    fileContent.en[key] = `ZO_CreateStringId("${key}", "${translations[key].en}")\n`;
+    fileContent.fr[key] = `ZO_CreateStringId("${key}", "${translations[key].fr}")\n`;
+    fileContent.de[key] = `ZO_CreateStringId("${key}", "${translations[key].de}")\n`;
   }
 
   return fileContent;
