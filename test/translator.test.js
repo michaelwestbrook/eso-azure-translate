@@ -16,9 +16,9 @@ function basicAssertTranslateAssert(translation) {
 	return translation;
 }
 
-// beforeEach(cleanTranslatedStrings);
+beforeEach(cleanTranslatedStrings);
 
-// afterAll(cleanTranslatedStrings);
+afterAll(cleanTranslatedStrings);
 
 describe("Translate string", () => {
 	test("Strings are translated from English", () => {
