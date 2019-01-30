@@ -1,6 +1,6 @@
 {
   "name": "eso-azure-translate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Translates and generates Elder Scrolls Online localization files",
   "main": "index.js",
   "scripts": {
