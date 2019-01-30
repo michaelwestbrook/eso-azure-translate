@@ -12,9 +12,7 @@
   },
   "author": "Mike Westbrook",
   "license": "ISC",
-  "dependencies": {
-    "fs-extra": "^7.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "^24.0.0",
     "rimraf": "^2.6.3"
