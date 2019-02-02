@@ -7,7 +7,7 @@ function translateEnglishString(accessKey, key, value, frenchOverrides, germanOv
       .then(response => {
         const json = JSON.parse(response);
         if (json && json["error"]) {
-          reject(respose.error);
+          reject(response.error);
         }
         // Collate results
         const translations = {
