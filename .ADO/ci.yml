@@ -1,5 +1,8 @@
 name: $(BuildID)
-trigger: master
+trigger: 
+- master
+
+pr: none
 
 variables:
   - group: TranslatorKey
