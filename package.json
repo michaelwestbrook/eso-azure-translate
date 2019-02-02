@@ -1,9 +1,10 @@
 {
   "name": "eso-azure-translate",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "Translates and generates Elder Scrolls Online localization files",
   "main": "index.js",
   "scripts": {
+    "prCheck": "node ./pr.js",
     "build": "node ./build.js",
     "test": "./node_modules/.bin/jest"
   },
@@ -17,6 +18,7 @@
   "devDependencies": {
     "copy": "^0.3.2",
     "jest": "^24.0.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "semver": "^5.6.0"
   }
 }
