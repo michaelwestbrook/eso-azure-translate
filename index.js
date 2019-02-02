@@ -44,7 +44,7 @@ function translateEnglishStrings(accessKey, en, fr, de, destinationDirectory) {
       return new Promise((resolve, reject) => {
         fs.exists(path.dirname(languageFile), exists => {
           if (!exists) {
-            fs.mkdir(path.dirname(languageFile), error => {
+            fs.mkdir(path.dirname(languageFile), { recursive: true }, error => {
               if (error) {
                 reject(error);
               }

@@ -1,3 +1,4 @@
+// TODO Tests need love. These are mostly debugging helpers.
 const rimraf = require("rimraf");
 const esoTranslate = require("../index");
 
