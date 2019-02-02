@@ -1,8 +1,8 @@
 // TODO Tests need love. These are mostly debugging helpers.
 const rimraf = require("rimraf");
-const esoTranslate = require("../index");
+const esoTranslate = require("./index");
 
-const destinationDirectory = "./test/translated";
+const destinationDirectory = "./test-translations";
 
 function cleanTranslatedStrings() {
 	return new Promise(resolve => rimraf(destinationDirectory, resolve));
