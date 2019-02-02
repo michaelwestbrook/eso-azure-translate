@@ -1,4 +1,7 @@
 name: $(BuildID)
+trigger:
+- master
+pr: none
 jobs:
 - job: Test
   pool:
