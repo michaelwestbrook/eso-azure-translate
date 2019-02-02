@@ -1,0 +1,9 @@
+{
+  "buildFiles": [
+    "test/**",
+    "index.js",
+    "package-lock.json",
+    "package.json",
+    "translate.js"
+  ]
+}
