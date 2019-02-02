@@ -16,6 +16,6 @@ return new Promise((resolve, reject) => {
   });
 })
   .catch(error => {
-    console.error(error);
+    console.error(`##vso[task.complete result=Failed;]${error}`);
     process.exit(1);
   });
