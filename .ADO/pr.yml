@@ -1,0 +1,17 @@
+name: $(BuildID)
+trigger: none
+pr: 
+- master
+jobs:
+- job: Test
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  variables:
+    - group: TranslatorKey
+
+  steps:
+    - script: |
+        npm install
+        npm run prCheck
+      displayName: 'check version bump'
+
