@@ -1,4 +1,5 @@
 {
+  "buildDirectory": "dist",
   "buildFiles": [
     "test/**",
     "index.js",
