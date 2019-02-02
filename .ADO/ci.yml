@@ -1,5 +1,5 @@
 jobs:
-- job: Test_$(BuildID)
+- job: Test
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
@@ -15,3 +15,18 @@ jobs:
       env: {
         "AzureTranslatorKey": $(ProvinatusTranslatorKey1)
       }
+
+- job: Package
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+      inputs:
+        Contents: |
+         test/**
+         index.js
+         package-lock.json
+         package.json
+         translate.js
+        TargetFolder: 'dist'
