@@ -1,5 +1,5 @@
 jobs:
-- job: Test-$(BuildID)
+- job: Test_$(BuildID)
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
