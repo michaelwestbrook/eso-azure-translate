@@ -1,3 +1,4 @@
+name: $(BuildID)
 jobs:
 - job: Test
   pool:
