@@ -33,7 +33,7 @@ describe("Translate string", () => {
 				expect(translation.key).toBe("key1");
 				expect(translation.fr).toBe("Custom French Value");
 				expect(translation.de).toBe("Custom German Value");
-				// expect(translation.en).toBe("value 1");
+				expect(translation.en).toBe("value 1");
 			});
 	});
 });
