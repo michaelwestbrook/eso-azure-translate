@@ -1,7 +1,6 @@
 name: $(BuildID)
 trigger:
-  branches:
-    include: master
+- master
 
 variables:
   - group: TranslatorKey
