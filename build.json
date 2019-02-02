@@ -1,0 +1,10 @@
+{
+  "buildDirectory": "dist",
+  "buildFiles": [
+    "index.js",
+    "package-lock.json",
+    "package.json",
+    "translate.js",
+    "translator.test.js"
+  ]
+}

@@ -1,25 +1,31 @@
 name: $(BuildID)
-trigger: 
+trigger:
 - master
-
 pr: none
+jobs:
+- job: Test
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  variables:
+    - group: TranslatorKey
 
-variables:
-  - group: TranslatorKey
+  steps:
+    - script: |
+        npm install
+        npm test
+      displayName: 'npm install and test'
+      env: {
+        "AzureTranslatorKey": $(ProvinatusTranslatorKey1)
+      }
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+- job: Package
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+    - script: |
+        npm install
+        npm run build
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    npm test
-  displayName: 'npm install and test'
-  env: {
-    "AzureTranslatorKey": $(ProvinatusTranslatorKey1)
-  }
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: 'dist'
