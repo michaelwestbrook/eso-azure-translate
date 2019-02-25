@@ -3,6 +3,7 @@ resources:
     - repository: ESODevTools
       type: git
       name: ESODevTools
+      ref: refs/heads/ado
 name: $(BuildID)
 trigger:
   - master
