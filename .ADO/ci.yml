@@ -1,31 +1,13 @@
+resources:
+  repositories:
+    - repository: ESODevTools
+      type: git
+      name: ESODevTools
 name: $(BuildID)
 trigger:
-- master
+  - master
 pr: none
+variables:
+  - group: TranslatorKey
 jobs:
-- job: Test
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  variables:
-    - group: TranslatorKey
-
-  steps:
-    - script: |
-        npm install
-        npm test
-      displayName: 'npm install and test'
-      env: {
-        "AzureTranslatorKey": $(ProvinatusTranslatorKey1)
-      }
-
-- job: Package
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  steps:
-    - script: |
-        npm install
-        npm run build
-
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathtoPublish: 'dist'
+  - template: ci.yml@ESODevTools

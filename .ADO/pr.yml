@@ -1,17 +1,11 @@
+resources:
+  repositories:
+    - repository: ESODevTools
+      type: git
+      name: ESODevTools
 name: $(BuildID)
 trigger: none
-pr: 
-- master
+pr:
+  - master
 jobs:
-- job: Test
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  variables:
-    - group: TranslatorKey
-
-  steps:
-    - script: |
-        npm install
-        npm run prCheck
-      displayName: 'check version bump'
-
+  - template pr.yml@ESODevTools
