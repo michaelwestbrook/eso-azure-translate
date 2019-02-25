@@ -8,4 +8,4 @@ trigger: none
 pr:
   - master
 jobs:
-  - template pr.yml@ESODevTools
+  - template: pr.yml@ESODevTools
