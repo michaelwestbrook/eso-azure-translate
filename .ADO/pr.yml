@@ -11,8 +11,9 @@ pr:
 
 variables:
   - group: TranslatorKey
-  - name: AzureTranslatorKey
-    value: $(ProvinatusTranslatorKey1)
+
 
 jobs:
+  - variables:
+      AzureTranslatorKey: $(ProvinatusTranslatorKey1)
   - template: ./.ADO/pr.yml@ESODevTools
