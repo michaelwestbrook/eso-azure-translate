@@ -1,7 +1,8 @@
 // TODO Tests need love. These are mostly debugging helpers at this point.
+jest.mock('https');
+
 const rimraf = require("rimraf");
 const esoTranslate = require("./index");
-
 const destinationDirectory = "./test-translations";
 
 function cleanTranslatedStrings() {
@@ -17,9 +18,15 @@ function basicAssertTranslateAssert(translation) {
 	return translation;
 }
 
-beforeEach(cleanTranslatedStrings);
+// beforeEach(() => {
+// 	cleanTranslatedStrings();
+// 	jest.mock('https');
+// });
 
-afterAll(cleanTranslatedStrings);
+// afterAll(() => {
+// 	cleanTranslatedStrings();
+// 	jest.unmock('https');
+// });
 
 describe("Translate string", () => {
 	test("Strings are translated from English", () => {
@@ -39,7 +46,7 @@ describe("Translate string", () => {
 	});
 });
 
-test("Translation fails if invalid access key provided", () => expect(esoTranslate.translateEnglishString("foo", "key1", "value 1", {}, {})).rejects.toEqual({"code": 401000, "message": "The request is not authorized because credentials are missing or invalid."}));
+test("Translation fails if invalid access key provided", () => expect(esoTranslate.translateEnglishString("foo", "key1", "value 1", {}, {})).rejects.toEqual({ "code": 401000, "message": "The request is not authorized because credentials are missing or invalid." }));
 
 test("E2E", () => {
 	return esoTranslate.translateEnglishStrings(process.env["AzureTranslatorKey"], { "key1": "Value 1", "key2": "Value 2" }, {}, {}, destinationDirectory);
