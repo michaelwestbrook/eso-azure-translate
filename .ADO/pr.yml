@@ -8,5 +8,9 @@ name: $(BuildID)
 trigger: none
 pr:
   - master
+
+variables:
+  - group: TranslatorKey
+
 jobs:
   - template: ./.ADO/pr.yml@ESODevTools
