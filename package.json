@@ -4,6 +4,8 @@
   "description": "Translates and generates Elder Scrolls Online localization files",
   "main": "index.js",
   "scripts": {
+    "build": "./node_modules/.bin/build-package",
+    "check-version-bump": "./node_modules/.bin/check-version-bump",
     "test": "./node_modules/.bin/jest"
   },
   "repository": {
@@ -14,9 +16,9 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "copy": "^0.3.2",
+    "check-version-bump": "^1.0.3",
     "jest": "^24.0.0",
-    "rimraf": "^2.6.3",
-    "semver": "^5.6.0"
+    "package-builder": "^1.0.1",
+    "rimraf": "^2.6.3"
   }
 }
